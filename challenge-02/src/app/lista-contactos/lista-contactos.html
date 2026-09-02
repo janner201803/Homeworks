@@ -1,0 +1,24 @@
+<h2>Mis Contactos</h2>
+
+<div class="lista-contactos">
+
+  @for (contacto of contactos; track $index) {
+
+    <div class="contacto">
+
+      <button
+        class="eliminar"
+        type="button"
+        (click)="eliminarContacto($index)">
+        ×
+      </button>
+
+      <h3>{{ contacto.nombre }}</h3>
+      <p>{{ contacto.telefono }}</p>
+      <p>{{ contacto.email }}</p>
+
+    </div>
+
+  }
+
+</div>

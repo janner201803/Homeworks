@@ -1,0 +1,28 @@
+@if (cargando) {
+
+  <div class="cargando">
+    <h1>Cargando...</h1>
+  </div>
+
+} @else {
+
+  <h1>Contactos</h1>
+
+  <div class="contenido">
+
+    <div id="formulario">
+      <app-formulario-contactos
+        (contactoCreado)="agregarContacto($event)">
+      </app-formulario-contactos>
+    </div>
+
+    <div id="lista">
+      <app-lista-contactos
+        [contactos]="contactos"
+        (contactoEliminado)="eliminarContacto($event)">
+      </app-lista-contactos>
+    </div>
+
+  </div>
+
+}

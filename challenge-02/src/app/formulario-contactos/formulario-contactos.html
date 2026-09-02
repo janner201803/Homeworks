@@ -1,0 +1,32 @@
+<div>   
+    <h2>Agregar Contacto</h2>
+    <form (ngSubmit)="agregarContacto()">
+
+        <label for="nombre">Nombre:</label>
+        <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        [(ngModel)]="nombre"
+        >
+
+        <label for="telefono">Teléfono:</label>
+        <input
+        type="text"
+        id="telefono"
+        name="telefono"
+        [(ngModel)]="telefono"
+        >
+
+        <label for="email">Email:</label>
+        <input
+        type="text"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        >
+
+        <button type="submit">Agregar</button>
+
+    </form>
+</div>

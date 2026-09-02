@@ -1,0 +1,76 @@
+h2 {
+  text-align: center;
+  color: #222;
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+.lista-contactos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.contacto {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+
+  padding: 18px 55px 18px 25px;
+
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+.contacto h3 {
+  margin: 0;
+  color: #1976d2;
+  font-size: 17px;
+  width: 30%;
+}
+
+.contacto p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  width: 30%;
+  text-align: center;
+}
+
+.eliminar {
+  position: absolute;
+
+  top: 50%;
+  right: 15px;
+
+  transform: translateY(-50%);
+
+  width: 28px;
+  height: 28px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #ff5252;
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.eliminar:hover {
+  background-color: #d32f2f;
+  transform: translateY(-50%) scale(1.1);
+}
