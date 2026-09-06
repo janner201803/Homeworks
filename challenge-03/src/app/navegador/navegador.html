@@ -1,0 +1,145 @@
+<div class="browser">
+  <div class="browser-top">
+    <button
+      class="navigation-button"
+      (click)="atras()"
+      [disabled]="!puedeRetroceder()"
+      title="Atrás"
+    >
+      ←
+    </button>
+    <button
+      class="navigation-button"
+      (click)="adelante()"
+      [disabled]="!puedeAvanzar()"
+      title="Adelante"
+    >
+      →
+    </button>
+    <button
+      class="navigation-button"
+      (click)="recargar()"
+      title="Recargar"
+    >
+      ↻
+    </button>
+    <input
+      class="url-bar"
+      type="text"
+      [(ngModel)]="url"
+      placeholder="Escribe una página..."
+      (keyup.enter)="nuevaPagina()"
+    >
+    <button
+      class="new-page-button"
+      (click)="nuevaPagina()"
+    >
+      + Nueva
+    </button>
+    <button
+      class="close-button"
+      (click)="cerrarPagina()"
+      title="Cerrar página"
+    >
+      ✕
+    </button>
+  </div>
+  <div class="browser-content">
+    <div class="browser-main">
+      <div class="search-container">
+        <input
+          type="text"
+          [(ngModel)]="busqueda"
+          placeholder="Buscar una página..."
+          (keyup.enter)="buscarPagina()"
+        >
+        <button
+          (click)="buscarPagina()"
+        >
+          Buscar
+        </button>
+      </div>
+      @if (resultadoBusqueda !== '') {
+        <div class="search-result">
+          {{ resultadoBusqueda }}
+        </div>
+      }
+
+      @if (paginaActual !== null) {
+        <div class="page">
+          <div class="page-icon">
+            🌐
+          </div>
+          <h1>
+            {{ paginaActual.value }}
+          </h1>
+          <p>
+            Estás visitando esta página.
+          </p>
+          <div class="page-url">
+            https://www.{{ paginaActual.value.toLowerCase() }}.com
+          </div>
+        </div>
+      } @else {
+        <div class="no-page">
+          <div class="page-icon">
+            🗂️
+          </div>
+          <h2>
+            No hay páginas abiertas
+          </h2>
+          <p>
+            Escribe una página arriba y pulsa
+            <strong>+ Nueva</strong>.
+          </p>
+        </div>
+      }
+    </div>
+    <div class="history">
+      <div class="history-header">
+        <h2>
+          Páginas
+        </h2>
+        <span>
+          {{ historial.length }}
+        </span>
+      </div>
+      <div class="pages-list">
+        @if (historial.length === 0) {
+          <p class="empty">
+            No hay páginas abiertas.
+          </p>
+        } @else {
+          @for (
+            pagina of obtenerPaginas();
+            track $index
+          ) {
+            <div
+              class="page-item"
+              [class.active]="
+                paginaActual !== null &&
+                paginaActual.value === pagina
+              "
+              (click)="irAPagina($index)"
+            >
+              <div class="page-number">
+                {{ $index + 1 }}
+              </div>
+              <div class="page-name">
+                🌐 {{ pagina }}
+              </div>
+              @if (
+                paginaActual !== null &&
+                paginaActual.value === pagina
+              ) {
+                <span class="current">
+                  Actual
+                </span>
+              }
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</div>

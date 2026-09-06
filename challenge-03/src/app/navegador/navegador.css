@@ -1,0 +1,288 @@
+.browser {
+  max-width: 1200px;
+  margin: 40px auto;
+  background: #f4f5f7;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.browser-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: #252526;
+}
+
+.navigation-button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #3a3a3a;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.navigation-button:hover {
+  background: #505050;
+}
+
+.navigation-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.url-bar {
+  flex: 1;
+  height: 42px;
+  border: none;
+  border-radius: 22px;
+  padding: 0 20px;
+  font-size: 16px;
+  outline: none;
+}
+
+.new-page-button {
+  height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 10px;
+  background: #4caf50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.new-page-button:hover {
+  background: #3d9141;
+}
+
+.close-button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #e53935;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background: #c62828;
+}
+
+.browser-content {
+  display: flex;
+  min-height: 600px;
+}
+
+.browser-main {
+  flex: 1;
+  padding: 25px;
+  min-width: 0;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 14px 18px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-container input:focus {
+  border-color: #667eea;
+}
+
+.search-container button {
+  padding: 0 25px;
+  border: none;
+  border-radius: 10px;
+  background: #667eea;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #5568d8;
+}
+
+.search-result {
+  padding: 12px 20px;
+  margin-bottom: 15px;
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.page {
+  min-height: 430px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.page-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.page h1 {
+  margin: 5px;
+  font-size: 32px;
+}
+
+.page p {
+  color: #666;
+}
+
+.page-url {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #f0f0f0;
+  border-radius: 20px;
+  color: #555;
+}
+
+.no-page {
+  min-height: 430px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.history {
+  width: 300px;
+  background: white;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.history-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.history-header span {
+  min-width: 30px;
+  height: 30px;
+  background: #667eea;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.pages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.page-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.page-item:hover {
+  background: #e9e9e9;
+}
+
+.page-item.active {
+  background: #e8eaff;
+  border: 2px solid #667eea;
+}
+
+.page-number {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #667eea;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.page-name {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.current {
+  background: #4caf50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .browser-content {
+    flex-direction: column;
+  }
+  .history {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #ddd;
+  }
+  .pages-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}

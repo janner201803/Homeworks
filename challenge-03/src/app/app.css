@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  height: 70px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 40px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+
+  padding: 12px 20px;
+  border-radius: 10px;
+
+  font-size: 17px;
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+main {
+  min-height: calc(100vh - 70px);
+  padding: 30px;
+}

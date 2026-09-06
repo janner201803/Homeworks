@@ -1,0 +1,97 @@
+<div class="playlist-container">
+  <div class="playlist-header">
+    <h1>🎵 Mi Playlist</h1>
+    <p>Administra tus canciones</p>
+  </div>
+  <div class="playlist-layout">
+    <div class="playlist-left">
+      <div class="add-song">
+        <input
+          type="text"
+          [(ngModel)]="nuevaCancion"
+          placeholder="Escribe una canción"
+          (keyup.enter)="agregarCancion()"
+        >
+        <button (click)="agregarCancion()">
+          + Agregar
+        </button>
+      </div>
+      <div class="search-song">
+        <input
+          type="text"
+          [(ngModel)]="busqueda"
+          placeholder="Buscar canción"
+          (keyup.enter)="buscarCancion()"
+        >
+        <button (click)="buscarCancion()">
+          Buscar
+        </button>
+      </div>
+      @if (resultadoBusqueda !== '') {
+        <div class="search-result">
+          {{ resultadoBusqueda }}
+        </div>
+      }
+      <div class="songs">
+        <h2>Mis canciones</h2>
+        @if (playlist.length === 0) {
+          <p class="empty">
+            No hay canciones todavía 🎵
+          </p>
+
+        } @else {
+          @for (cancion of obtenerCanciones(); track $index) {
+            <div class="song">
+              <div class="song-info">
+                <span class="number">
+                  {{ $index + 1 }}
+                </span>
+                <span class="song-name">
+                  {{ cancion }}
+                </span>
+              </div>
+              <button
+                class="delete"
+                (click)="eliminarCancion($index)"
+              >
+                🗑️
+              </button>
+            </div>
+          }
+        }
+      </div>
+    </div>
+    <div class="playlist-right">
+      @if (cancionActual !== null) {
+        <div class="player">
+          <div class="player-info">
+            <span class="player-icon">
+              🎵
+            </span>
+            <div>
+              <p class="playing-label">
+                REPRODUCIENDO AHORA
+              </p>
+              <h2>
+                {{ cancionActual.value }}
+              </h2>
+            </div>
+          </div>
+          <div class="player-controls">
+            <button class="play-button">
+              ▶
+            </button>
+            <button
+              class="next-button"
+              (click)="siguienteCancion()"
+              [disabled]="cancionActual.next === null"
+            >
+              ⏭ Siguiente
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
