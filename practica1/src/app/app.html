@@ -1,0 +1,18 @@
+<div class="contenedor">
+
+  <h1>Registro de Estudiantes</h1>
+
+  <div class="contenido">
+
+    <app-formulario-estudiante
+      (estudianteAgregado)="agregarEstudiante($event)">
+    </app-formulario-estudiante>
+
+    <app-listado-estudiantes
+      [estudiantes]="estudiantes"
+      (estudianteEliminado)="eliminarEstudiante($event)">
+    </app-listado-estudiantes>
+
+  </div>
+
+</div>

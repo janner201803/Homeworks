@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #e0f2fe, #ede9fe);
+}
+
+.contenedor {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 30px 20px;
+}
+
+.contenedor h1 {
+  text-align: center;
+  color: #312e81;
+  margin: 0 0 45px 0;
+}
+
+.contenido {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  width: 100%;
+}
+
+app-formulario-estudiante {
+  display: block;
+  width: 500px;
+  flex-shrink: 0;
+}
+
+app-listado-estudiantes {
+  display: block;
+  width: 600px;
+  flex-shrink: 0;
+}

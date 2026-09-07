@@ -1,0 +1,43 @@
+<div class="lista">
+  <h2>Lista de Estudiantes</h2>
+  <div class="buscador">
+    <input
+      type="text"
+      [(ngModel)]="buscar"
+      placeholder="Buscar por nombre o código"
+    >
+  </div>
+  @if (estudiantesFiltrados().length === 0) {
+    <p class="sin-estudiantes">
+      No se encontraron estudiantes.
+    </p>
+  } @else {
+
+    <div class="estudiantes">
+      @for (estudiante of estudiantesFiltrados(); track $index) {
+        <div class="estudiante">
+          <div class="informacion">
+            <p>
+              <strong>Nombre:</strong>
+              {{ estudiante.nombre }}
+            </p>
+            <p>
+              <strong>Edad:</strong>
+              {{ estudiante.edad }}
+            </p>
+            <p>
+              <strong>Código:</strong>
+              {{ estudiante.codigo }}
+            </p>
+          </div>
+          <button
+            class="eliminar"
+            (click)="eliminarEstudiante($index)"
+          >
+            Eliminar
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>
