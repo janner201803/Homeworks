@@ -1,0 +1,21 @@
+<div class="contenedor">
+  <h2>Rotación de médicos</h2>
+  <div class="medico-actual">
+    <h3>Médico de guardia</h3>
+    <p>{{ medicoActual }}</p>
+  </div>
+
+  <button (click)="siguienteMedico()">
+    Siguiente médico
+  </button>
+
+  <h3>Lista circular</h3>
+  <div class="lista">
+    @for (medico of obtenerMedicos(); track $index) {
+      <div class="elemento">
+        {{ medico }}
+      </div>
+    }
+  </div>
+  <p>Total de médicos: {{ lista.size() }}</p>
+</div>

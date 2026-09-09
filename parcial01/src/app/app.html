@@ -1,0 +1,10 @@
+<div class="app">
+  <h1>Sistema de gestión de clínica</h1>
+  <div class="contenedor-componentes">
+    <app-pacientes (pacienteAtendido)="recibirPaciente($event)"></app-pacientes>
+    <app-atencion [lista]="listaAtencion"></app-atencion>
+    <app-medicos></app-medicos>
+    <app-comite-administrativo></app-comite-administrativo>
+  </div>
+</div>
+

@@ -1,0 +1,37 @@
+<div class="contenedor">
+  <h2>Pacientes en espera</h2>
+
+  <input
+    type="text"
+    [(ngModel)]="nuevoPaciente"
+    placeholder="Nombre del paciente"
+  />
+
+  <button (click)="agregarPaciente()">
+    Agregar paciente
+  </button>
+
+  <h3>Pacientes registrados</h3>
+
+  <div class="lista">
+    @for (paciente of obtenerPacientes(); track $index) {
+      <div class="elemento">
+        {{ paciente }}
+      </div>
+    }
+  </div>
+
+  <h3>Atender paciente</h3>
+
+  <input
+    type="text"
+    [(ngModel)]="pacienteParaAtender"
+    placeholder="Nombre del paciente a atender"
+  />
+
+  <button (click)="atenderPaciente()">
+    Atender paciente
+  </button>
+
+  <p>Total de pacientes: {{ lista.size() }}</p>
+</div>

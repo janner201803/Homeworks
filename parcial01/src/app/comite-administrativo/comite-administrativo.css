@@ -1,0 +1,92 @@
+.contenedor {
+  padding: 20px;
+  border: 1px solid #d6e3ed;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #1565c0;
+  text-align: center;
+}
+
+h3 {
+  color: #455a64;
+  margin-top: 25px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #90caf9;
+  border-radius: 6px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #1976d2;
+}
+
+button {
+  padding: 10px 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 7px;
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0d47a1;
+}
+
+button:disabled {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+}
+
+.lista {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  margin: 20px 0;
+}
+
+.elemento {
+  min-width: 220px;
+  padding: 25px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #e3f2fd;
+  border: 2px solid #90caf9;
+  color: #1565c0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.controles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.controles span {
+  min-width: 180px;
+  text-align: center;
+  color: #455a64;
+}
+
+.controles strong {
+  color: #1565c0;
+}
+
+p {
+  color: #546e7a;
+  text-align: center;
+}

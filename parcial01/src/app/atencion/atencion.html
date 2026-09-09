@@ -1,0 +1,49 @@
+<div class="contenedor">
+  <h2>Historial de atención</h2>
+  <div class="paciente-individual">
+    @if (nodoActual !== null) {
+
+      <div class="nodo activo">
+
+        <div class="nodo-titulo">
+          Paciente atendido
+        </div>
+        <div class="nodo-nombre">
+          {{ nodoActual.value }}
+        </div>
+      </div>
+    } @else {
+      <p class="sin-pacientes">
+        Todavía no hay pacientes atendidos.
+      </p>
+    }
+  </div>
+  <div class="controles">
+    <button
+      (click)="pacienteAnterior()"
+      [disabled]="nodoActual === null || nodoActual.previous === null"
+    >
+      Anterior
+    </button>
+    <div class="posicion">
+      @if (nodoActual !== null) {
+        <strong>{{ nodoActual.value }}</strong>
+        <span>
+          Paciente {{ obtenerPosicion() }} de {{ lista.size() }}
+        </span>
+      } @else {
+        <span>No hay pacientes en el historial</span>
+      }
+    </div>
+    <button
+      (click)="siguientePaciente()"
+      [disabled]="nodoActual === null || nodoActual.next === null"
+    >
+      Siguiente
+    </button>
+  </div>
+  <p class="total">
+    Total de pacientes atendidos: {{ lista.size() }}
+  </p>
+</div>
+

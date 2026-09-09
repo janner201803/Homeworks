@@ -1,0 +1,40 @@
+<div class="contenedor">
+  <h2>Comité administrativo</h2>
+  <input
+    type="text"
+    [(ngModel)]="nuevoIntegrante"
+    placeholder="Nombre del integrante"
+  />
+  <button (click)="agregarIntegrante()">
+    Agregar integrante
+  </button>
+  <h3>Recorrido de la lista circular doble</h3>
+  <div class="lista">
+    @if (nodoActual !== null) {
+      <div class="elemento activo">
+        {{ nodoActual.value }}
+      </div>
+    } @else {
+      <p>No hay integrantes registrados.</p>
+    }
+  </div>
+  <div class="controles">
+    <button
+      (click)="integranteAnterior()"
+      [disabled]="nodoActual === null"
+    >
+      Anterior
+    </button>
+    <span>
+      Integrante actual:
+      <strong>{{ nodoActual?.value }}</strong>
+    </span>
+    <button
+      (click)="siguienteIntegrante()"
+      [disabled]="nodoActual === null"
+    >
+      Siguiente
+    </button>
+  </div>
+  <p>Total de integrantes: {{ lista.size() }}</p>
+</div>
