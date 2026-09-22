@@ -1,0 +1,18 @@
+<h2>Lista de libros</h2>
+
+<button class="eliminar" (click)="eliminarLibro()" [disabled]="pila.isEmpty()">Eliminar último libro</button>
+
+<div class="pila">
+  @for (libro of obtenerLibros(); track $index) {
+    <div class="libro">
+      <h3>{{ libro.nombre }}</h3>
+      <p><strong>ISBN:</strong> {{ libro.isbn }}</p>
+      <p><strong>Autor:</strong> {{ libro.autor }}</p>
+      <p><strong>Editorial:</strong> {{ libro.editorial }}</p>
+    </div>
+  }
+</div>
+
+<p class="cantidad">
+  Cantidad de libros: {{ pila.size() }}
+</p>

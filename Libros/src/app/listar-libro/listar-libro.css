@@ -1,0 +1,41 @@
+.pila {
+  width: 100%;
+}
+
+.libro {
+  background-color: #eef5fb;
+  border: 1px solid #cbdbea;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+}
+
+.libro h3 {
+  margin-top: 0;
+  color: #1f3c5b;
+}
+
+.libro p {
+  margin: 6px 0;
+}
+
+.eliminar {
+  display: block;
+  margin: 15px auto 20px;
+  padding: 10px 18px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.eliminar:hover {
+  background-color: #c9302c;
+}
+
+.eliminar:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}

@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f5f9;
+}
+
+h1 {
+  text-align: center;
+  color: #1f3c5b;
+  margin: 30px 0;
+}
+
+/* Contenedor principal */
+.contenedor {
+  display: flex;
+  gap: 30px;
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  align-items: flex-start;
+}
+
+/* Parte izquierda */
+.formulario {
+  background-color: white;
+  width: 40%;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #ccc;
+}
+
+/* Parte derecha */
+.libros {
+  background-color: white;
+  width: 60%;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #ccc;
+}
+
+/* Títulos */
+h2 {
+  color: #1f3c5b;
+  margin-top: 0;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* Botón eliminar */
+.eliminar {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.eliminar:hover {
+  background-color: #c9302c;
+}
+
+/* Libros */
+.libro {
+  background-color: #eef5fb;
+  border: 1px solid #cbdbea;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 7px;
+}
+
+.libro h3 {
+  color: #1f3c5b;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.libro p {
+  margin: 6px 0;
+}
+
+.cantidad {
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+}

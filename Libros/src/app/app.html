@@ -1,0 +1,13 @@
+<h1>Pila de Libros</h1>
+
+<div class="contenedor">
+  <div class="formulario">
+    <app-formulario-libro
+      (libroAgregado)="listaLibros.agregarLibro($event)">
+    </app-formulario-libro>
+  </div>
+
+  <div class="libros">
+    <app-listar-libro #listaLibros></app-listar-libro>
+  </div>
+</div>
