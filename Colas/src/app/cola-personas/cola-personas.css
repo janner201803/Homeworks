@@ -1,0 +1,106 @@
+h1 {
+  text-align: center;
+  color: #1f3c5b;
+  margin: 30px 0;
+}
+
+.contenedor {
+  display: flex;
+  gap: 30px;
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  align-items: flex-start;
+}
+
+.formulario {
+  background-color: white;
+  width: 35%;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #ccc;
+}
+
+.cola {
+  background-color: white;
+  width: 65%;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #ccc;
+}
+
+h2 {
+  color: #1f3c5b;
+  margin-top: 0;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 95%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #125ca1;
+}
+
+.retirar {
+  background-color: #d9534f;
+}
+
+.retirar:hover {
+  background-color: #c9302c;
+}
+
+.retirar:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.persona {
+  background-color: #eef5fb;
+  border: 1px solid #cbdbea;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+}
+
+.persona h3 {
+  margin-top: 0;
+  color: #1f3c5b;
+}
+
+.persona p {
+  margin: 6px 0;
+}
+
+.primero {
+  color: #1976d2;
+  font-weight: bold;
+}
+
+.cantidad {
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+}

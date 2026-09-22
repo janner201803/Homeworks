@@ -1,0 +1,33 @@
+<h1>Cola del Banco</h1>
+
+<div class="contenedor">
+  <div class="formulario">
+    <h2>Agregar persona</h2>
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="nombre" placeholder="Ingrese el nombre">
+
+    <label>Monto a retirar:</label>
+    <input type="number" [(ngModel)]="monto" placeholder="Ingrese el monto">
+    <button (click)="agregarPersona()">Agregar a la cola</button>
+  </div>
+  <div class="cola">
+    <h2>Personas en espera</h2>
+    <button class="retirar" (click)="retirarDinero()" [disabled]="cola.isEmpty()">Retirar dinero</button>
+    @for (persona of obtenerPersonas(); track $index) {
+      <div class="persona">
+        <h3>{{ persona.nombre }}</h3>
+        <p><strong>Monto:</strong>${{ persona.monto }}</p>
+        <p><strong>Hora de llegada:</strong>{{ persona.horaLlegada }}</p>
+        @if ($index === 0) {
+          <p class="primero">
+            Primero en retirar
+          </p>
+        }
+      </div>
+    }
+
+    <p class="cantidad">
+      Personas en cola: {{ cola.size() }}
+    </p>
+  </div>
+</div>
