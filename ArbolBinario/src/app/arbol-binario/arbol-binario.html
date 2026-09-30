@@ -1,0 +1,70 @@
+<div class="contenedor">
+  <h1>Árbol Binario</h1>
+  <div class="formulario">
+    <div class="grupo">
+      <label for="numero">
+        Número para insertar
+      </label>
+      <input
+        id="numero"
+        type="number"
+        [(ngModel)]="numero"
+        (keyup.enter)="agregarNumero()"
+        placeholder="Ej: 50"
+      />
+      <button (click)="agregarNumero()">
+        Agregar
+      </button>
+    </div>
+    <div class="grupo">
+      <label for="buscar">
+        Número para buscar
+      </label>
+      <input
+        id="buscar"
+        type="number"
+        [(ngModel)]="numeroBuscar"
+        (keyup.enter)="buscarNumero()"
+        placeholder="Ej: 30"
+      />
+      <button (click)="buscarNumero()">
+        Buscar
+      </button>
+    </div>
+  </div>
+
+  @if (mensaje) {
+    <p class="mensaje">
+      {{ mensaje }}
+    </p>
+  }
+  <div class="recorridos">
+    <div>
+      <h3>PreOrder</h3>
+      <p>
+        {{ preorder.join(' → ') }}
+      </p>
+    </div>
+
+    <div>
+      <h3>InOrder</h3>
+      <p>
+        {{ inorder.join(' → ') }}
+      </p>
+    </div>
+
+    <div>
+      <h3>PostOrder</h3>
+      <p>
+        {{ postorder.join(' → ') }}
+      </p>
+    </div>
+  </div>
+
+  <div class="arbol">
+    <h2>Visualización con D3</h2>
+    <div
+      #treeContainer class="tree-container">
+    </div>
+  </div>
+</div>
