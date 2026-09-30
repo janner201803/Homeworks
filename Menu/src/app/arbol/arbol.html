@@ -1,0 +1,78 @@
+<div class="contenedor">
+
+  @if (!menuAbierto) {
+  <button class="hamburguesa" (click)="abrirMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+}
+
+  @if (menuAbierto) {
+    <div
+      class="fondo"
+      (click)="cerrarMenu()">
+    </div>
+  }
+
+  <aside
+    class="menu"
+    [class.abierto]="menuAbierto"
+  >
+
+    <div class="cabecera">
+      <h2>Menú</h2>
+      <button class="cerrar" (click)="cerrarMenu()">×</button>
+    </div>
+
+    @if (arbol.root) {
+      <ul>
+        @for (
+          item of arbol.root.children;
+          track item.title
+        ) {
+          <li>
+            <div
+              class="item"
+              (click)="tieneHijos(item)
+                ? alternarSubmenu(item)
+                : null"
+            >
+              <span>
+                {{ item.title }}
+              </span>
+
+              @if (tieneHijos(item)) {
+                <span class="flecha">
+                  {{ estaAbierto(item) ? '▼' : '▶' }}
+                </span>
+              }
+            </div>
+
+            @if (tieneHijos(item) && estaAbierto(item)) {
+              <ul class="submenu">
+                @for (
+                  hijo of item.children;
+                  track hijo.title
+                ) {
+                  <li>
+                    <div class="item subitem">
+                      <span>
+                        {{ hijo.title }}
+                      </span>
+                      @if (tieneHijos(hijo)) {
+                        <span class="flecha">
+                          ▶
+                        </span>
+                      }
+                    </div>
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
+      </ul>
+    }
+  </aside>
+</div>
