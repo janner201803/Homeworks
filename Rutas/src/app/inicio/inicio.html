@@ -1,0 +1,75 @@
+<div class="contenedor">
+
+  <header>
+
+    <h1>
+      Página de Inicio
+    </h1>
+
+    <div class="usuario">
+
+      <span>
+        Usuario:
+        <strong>
+          {{ authService.usuario() }}
+        </strong>
+      </span>
+
+      <button
+        (click)="cerrarSesion()"
+      >
+        Cerrar Sesión
+      </button>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <h2>
+      Bienvenido
+    </h2>
+
+    <p>
+      Seleccione una de las estructuras de datos
+      para acceder a su ejercicio.
+    </p>
+
+    <div class="opciones">
+
+      <a
+        routerLink="/arbol-nario"
+        class="opcion"
+      >
+
+        <h3>
+          Árbol N-ario
+        </h3>
+
+        <p>
+          Ver el ejercicio del árbol N-ario.
+        </p>
+
+      </a>
+
+      <a
+        routerLink="/arbol-binario"
+        class="opcion"
+      >
+
+        <h3>
+          Árbol Binario
+        </h3>
+
+        <p>
+          Ver el ejercicio del árbol binario.
+        </p>
+
+      </a>
+
+    </div>
+
+  </main>
+
+</div>
