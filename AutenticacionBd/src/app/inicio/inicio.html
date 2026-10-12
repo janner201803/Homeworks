@@ -1,0 +1,93 @@
+<div class="tasks-page">
+  <header class="topbar">
+    <div>
+      <h1>Mis tareas</h1>
+      <p>{{ userEmail }}</p>
+    </div>
+
+    <button class="logout-button" type="button" (click)="logout()">
+      Cerrar sesión
+    </button>
+  </header>
+
+  <main class="tasks-content">
+    <section class="task-form">
+      <h2>{{ editingId ? 'Editar tarea' : 'Nueva tarea' }}</h2>
+
+      <form (ngSubmit)="saveTask()">
+        <label for="title">Título</label>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          [(ngModel)]="title"
+          placeholder="Ej. Estudiar Angular"
+          required
+        />
+
+        <label for="description">Descripción</label>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="description"
+          placeholder="Describe la tarea"
+          rows="3"
+        ></textarea>
+
+        <div class="form-buttons">
+          <button type="submit">
+            {{ editingId ? 'Guardar cambios' : 'Crear tarea' }}
+          </button>
+
+          <button
+            *ngIf="editingId"
+            type="button"
+            class="cancel-button"
+            (click)="cancelEdit()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+
+      <p class="success" *ngIf="message">{{ message }}</p>
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </section>
+
+    <section class="task-list">
+      <h2>Lista de tareas</h2>
+
+      <p *ngIf="loading">Cargando tareas...</p>
+
+      <p *ngIf="!loading && tasks.length === 0">
+        Todavía no tienes tareas creadas.
+      </p>
+
+      <article class="task-card" *ngFor="let task of tasks">
+        <div class="task-details">
+          <h3 [class.completed]="task.done">{{ task.title }}</h3>
+          <p>{{ task.description }}</p>
+          <span>{{ task.done ? 'Completada' : 'Pendiente' }}</span>
+        </div>
+
+        <div class="task-actions">
+          <button type="button" (click)="toggleTask(task)">
+            {{ task.done ? 'Reabrir' : 'Completar' }}
+          </button>
+
+          <button type="button" (click)="editTask(task)">
+            Editar
+          </button>
+
+          <button
+            type="button"
+            class="delete-button"
+            (click)="deleteTask(task.id)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </article>
+    </section>
+  </main>
+</div>
