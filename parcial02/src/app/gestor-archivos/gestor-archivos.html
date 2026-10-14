@@ -1,0 +1,171 @@
+<div class="file-app">
+  <header class="topbar">
+    <div class="brand">
+      <span>BD</span>
+    </div>
+
+    <div class="user-info">
+      <span>{{ usuario?.email }}</span>
+
+      <button
+        class="logout-button"
+        (click)="cerrarSesion()">
+        Cerrar sesión
+      </button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="sidebar">
+      <h2>Mi espacio</h2>
+
+      <button
+        class="home-button"
+        (click)="irARaiz()"
+        [disabled]="cargando() || !arbol">
+        Mi unidad
+      </button>
+
+      <p>
+        Organiza tus documentos creando carpetas y archivos.
+      </p>
+    </aside>
+
+    <main class="content">
+      <section class="heading">
+        <div>
+          <span class="eyebrow">MIS ARCHIVOS</span>
+
+          <h1>
+            {{ carpetaActual?.data?.nombre ?? 'Mi unidad' }}
+          </h1>
+
+          <p>Organiza tu información de manera sencilla.</p>
+        </div>
+
+        <button
+          class="secondary-button"
+          (click)="subirNivel()"
+          [disabled]="
+            cargando() ||
+            !carpetaActual ||
+            carpetaActual.data.parentId === null
+          ">
+          ← Volver
+        </button>
+      </section>
+
+      <section class="create-panel">
+        <h2>Crear carpeta o archivo</h2>
+
+        <form (ngSubmit)="crearElemento()">
+          <input
+            type="text"
+            name="nombre"
+            [(ngModel)]="nombre"
+            placeholder="Nombre del elemento"
+            maxlength="100"
+            required
+            [disabled]="cargando()"
+          />
+
+          <select
+            name="tipo"
+            [(ngModel)]="tipo"
+            [disabled]="cargando()">
+            <option value="carpeta">📁 Carpeta</option>
+            <option value="archivo">📄 Archivo</option>
+          </select>
+
+          <button
+            type="submit"
+            [disabled]="cargando() || !nombre.trim() || !carpetaActual">
+            + Crear
+          </button>
+        </form>
+      </section>
+
+      @if (error) {
+        <div class="notice error">
+          {{ error }}
+        </div>
+      }
+
+      @if (mensaje) {
+        <div class="notice success">
+          {{ mensaje }}
+        </div>
+      }
+
+      <section class="items-section">
+        <div class="section-heading">
+          <h2>Contenido</h2>
+
+          <span>
+            {{ carpetaActual?.children?.length ?? 0 }} elementos
+          </span>
+        </div>
+
+        @if (cargando()) {
+          <div class="empty-state">
+            <div class="spinner"></div>
+            <p>Cargando tus archivos y carpetas...</p>
+          </div>
+        } @else if (arbol) {
+          <div class="items-grid">
+            @for (
+              nodo of carpetaActual?.children ?? [];
+              track nodo.data.id
+            ) {
+              <article class="item-card">
+                <button
+                  class="item-main"
+                  (click)="entrar(nodo)"
+                  [disabled]="nodo.data.tipo === 'archivo'">
+
+                  <span class="item-icon">
+                    {{ nodo.data.tipo === 'carpeta' ? '📁' : '📄' }}
+                  </span>
+
+                  <strong>{{ nodo.data.nombre }}</strong>
+
+                  <span class="item-type">
+                    {{ nodo.data.tipo }}
+                  </span>
+                </button>
+
+                <div class="item-details">
+                  <span>Creado por</span>
+                  <small>
+                    {{ nodo.data.ownerEmail || 'Usuario' }}
+                  </small>
+                </div>
+
+                <button
+                  class="delete-button"
+                  (click)="eliminar(nodo)">
+                  Eliminar
+                </button>
+              </article>
+            } @empty {
+              <div class="empty-state">
+                <span class="empty-icon">📂</span>
+                <h3>Esta carpeta está vacía</h3>
+                <p>
+                  Crea una carpeta o un archivo para comenzar.
+                </p>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <h3>No se pudieron cargar los archivos</h3>
+            <p>
+              {{ error || 'No se ha podido construir el árbol de archivos.' }}
+            </p>
+          </div>
+        }
+      </section>
+    </main>
+  </div>
+</div>

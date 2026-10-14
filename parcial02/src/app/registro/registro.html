@@ -1,0 +1,58 @@
+<div class="auth-page">
+  <section class="auth-card">
+    <h1>Crear cuenta</h1>
+    <p class="subtitle">Regístrate para organizar tus archivos</p>
+
+    <form (ngSubmit)="registrar()">
+      <label for="email">Correo electrónico</label>
+
+      <input
+        id="email"
+        type="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="correo@ejemplo.com"
+        autocomplete="email"
+        required
+      />
+
+      <label for="password">Contraseña</label>
+
+      <input
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Mínimo 6 caracteres"
+        autocomplete="new-password"
+        minlength="6"
+        required
+      />
+
+      <label for="confirmar">Confirmar contraseña</label>
+
+      <input
+        id="confirmar"
+        type="password"
+        name="confirmarPassword"
+        [(ngModel)]="confirmarPassword"
+        placeholder="Repite la contraseña"
+        autocomplete="new-password"
+        required
+      />
+
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+
+      <button type="submit" [disabled]="cargando">
+        {{ cargando ? 'Creando cuenta...' : 'Registrarme' }}
+      </button>
+    </form>
+
+    <p class="footer">
+      ¿Ya tienes una cuenta?
+      <a routerLink="/login">Inicia sesión</a>
+    </p>
+  </section>
+</div>
