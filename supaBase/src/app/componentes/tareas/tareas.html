@@ -1,0 +1,91 @@
+<main class="contenedor">
+  <header class="encabezado">
+    <div>
+      <p class="eyebrow">Tu espacio personal</p>
+      <h1>Mis tareas</h1>
+      <p class="subtitulo">Un paso a la vez. Mantén todo en orden.</p>
+      <p class="estado-realtime" [class.estado-error]="estadoRealtime.startsWith('Sin conexión')">
+        <span class="punto-conexion" aria-hidden="true"></span>{{ estadoRealtime }}
+      </p>
+    </div>
+    <button class="boton-secundario" type="button" (click)="cerrarSesion()">Cerrar sesión</button>
+  </header>
+
+  <section class="avatar tarjeta" aria-labelledby="titulo-avatar">
+    <div class="avatar-info">
+      <img *ngIf="avatarUrl" class="avatar-imagen" [src]="avatarUrl" alt="Mi foto de perfil" />
+      <div *ngIf="!avatarUrl" class="avatar-placeholder" aria-hidden="true">U</div>
+      <div>
+        <h2 id="titulo-avatar">Tu perfil</h2>
+        <p>Sube una foto para personalizar tu espacio.</p>
+      </div>
+    </div>
+
+    <label class="boton-subir" for="avatar">Elegir imagen</label>
+    <input id="avatar" class="input-archivo" type="file" accept="image/jpeg,image/png,image/webp,image/gif" (change)="subirAvatar($event)" />
+    <p class="ayuda-avatar">JPG, PNG, WEBP o GIF · máximo 2 MB</p>
+    <p class="mensaje-avatar" aria-live="polite" *ngIf="mensajeAvatar">{{ mensajeAvatar }}</p>
+  </section>
+
+  <section class="tarjeta lista-tareas" aria-labelledby="titulo-lista">
+    <div class="seccion-titulo">
+      <div>
+        <p class="eyebrow">Organízate</p>
+        <h2 id="titulo-lista">Tu lista</h2>
+      </div>
+      <div class="lista-tools">
+        <span class="contador">{{ tareas.length }} {{ tareas.length === 1 ? 'tarea' : 'tareas' }}</span>
+        <button class="accion" type="button" (click)="cargarTareas()" [disabled]="cargandoLista">
+          {{ cargandoLista ? 'Cargando…' : 'Actualizar' }}
+        </button>
+      </div>
+    </div>
+
+    <form class="form-tarea" (ngSubmit)="agregarTarea()" #formulario="ngForm">
+    <input
+      type="text"
+      name="titulo"
+      [(ngModel)]="titulo"
+      placeholder="Ej. Terminar el proyecto"
+      aria-label="Nombre de la nueva tarea"
+      required
+    />
+
+      <button class="boton-principal" type="submit" [disabled]="formulario.invalid || cargando">
+        {{ cargando ? 'Guardando...' : 'Agregar tarea' }}
+      </button>
+    </form>
+
+    <p class="mensaje-app" aria-live="polite" *ngIf="mensaje">{{ mensaje }}</p>
+
+    <div class="cargando-lista" *ngIf="cargandoLista" role="status">Consultando tus tareas…</div>
+
+    <div class="vacio" *ngIf="!cargandoLista && !mensaje && tareas.length === 0">
+      <span class="vacio-icono" aria-hidden="true">✓</span>
+      <h3>Aún no tienes tareas</h3>
+      <p>Agrega tu primer pendiente arriba y aparecerá aquí.</p>
+    </div>
+
+    <ul class="lista">
+      <li *ngFor="let tarea of tareas" [class.tarea-hecha]="tarea.completada">
+        <div class="tarea-contenido">
+          <span class="indicador" [class.indicador-hecho]="tarea.completada" aria-hidden="true">
+            {{ tarea.completada ? '✓' : '' }}
+          </span>
+          <div class="tarea-texto">
+            <span class="tarea-nombre">{{ tarea.titulo }}</span>
+            <small>{{ tarea.completada ? 'Completada' : 'Pendiente' }}</small>
+          </div>
+        </div>
+
+        <div class="acciones">
+          <button class="accion" type="button" (click)="cambiarEstado(tarea)">
+            {{ tarea.completada ? 'Reabrir' : 'Completar' }}
+          </button>
+          <button class="accion" type="button" (click)="editarTarea(tarea)">Editar</button>
+          <button class="accion accion-borrar" type="button" (click)="eliminarTarea(tarea.id)">Eliminar</button>
+        </div>
+      </li>
+    </ul>
+  </section>
+</main>
