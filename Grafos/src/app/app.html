@@ -1,0 +1,397 @@
+<div class="pagina">
+
+  <header class="encabezado">
+    <div>
+      <h1>🌐 Grafo de Amigos y Ciudades</h1>
+      <p>Challenge 11 · Estructuras de Datos II</p>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <!-- MENSAJES -->
+    <div
+      *ngIf="mensaje"
+      class="mensaje"
+      [class.exito]="tipoMensaje === 'exito'"
+      [class.error]="tipoMensaje === 'error'"
+      role="status"
+    >
+      {{ mensaje }}
+
+      <button
+        type="button"
+        class="cerrar-mensaje"
+        (click)="mensaje = ''; tipoMensaje = ''"
+        aria-label="Cerrar mensaje"
+      >
+        ×
+      </button>
+    </div>
+
+    <!-- FORMULARIOS -->
+    <section class="formularios">
+
+      <!-- AGREGAR CIUDAD -->
+      <article class="tarjeta">
+
+        <h2>🏙️ Agregar ciudad</h2>
+
+        <p class="descripcion">
+          Registra las ciudades donde viven las personas.
+        </p>
+
+        <form (ngSubmit)="agregarCiudad()">
+
+          <label for="nombreCiudad">
+            Nombre de la ciudad
+          </label>
+
+          <input
+            id="nombreCiudad"
+            type="text"
+            name="nombreCiudad"
+            [(ngModel)]="nombreCiudad"
+            placeholder="Ej. Cali"
+            required
+          />
+
+          <button type="submit" class="boton boton-verde">
+            Agregar ciudad
+          </button>
+
+        </form>
+
+        <div class="resumen">
+          Ciudades registradas:
+          <strong>{{ ciudades.length }}</strong>
+        </div>
+
+      </article>
+
+      <!-- AGREGAR PERSONA -->
+      <article class="tarjeta">
+
+        <h2>👤 Agregar persona</h2>
+
+        <p class="descripcion">
+          Registra una persona y conéctala con su ciudad.
+        </p>
+
+        <form (ngSubmit)="agregarPersona()">
+
+          <label for="nombrePersona">
+            Nombre completo
+          </label>
+
+          <input
+            id="nombrePersona"
+            type="text"
+            name="nombrePersona"
+            [(ngModel)]="nombrePersona"
+            placeholder="Ej. Ana López"
+            required
+          />
+
+          <label for="edadPersona">
+            Edad
+          </label>
+
+          <input
+            id="edadPersona"
+            type="number"
+            name="edadPersona"
+            [(ngModel)]="edadPersona"
+            min="0"
+            max="130"
+            step="1"
+            placeholder="Ej. 20"
+            required
+          />
+
+          <label for="ciudadSeleccionada">
+            Ciudad donde vive
+          </label>
+
+          <select
+            id="ciudadSeleccionada"
+            name="ciudadSeleccionada"
+            [(ngModel)]="ciudadSeleccionada"
+            required
+          >
+            <option value="" disabled>
+              Selecciona una ciudad
+            </option>
+
+            <option
+              *ngFor="let ciudad of ciudades"
+              [value]="ciudad.id"
+            >
+              {{ ciudad.nombre }}
+            </option>
+
+          </select>
+
+          <button
+            type="submit"
+            class="boton boton-azul"
+            [disabled]="ciudades.length === 0"
+          >
+            Agregar persona
+          </button>
+
+          <small *ngIf="ciudades.length === 0">
+            Primero debes registrar una ciudad.
+          </small>
+
+        </form>
+
+        <div class="resumen">
+          Personas registradas:
+          <strong>{{ personas.length }}</strong>
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- VISUALIZACIÓN DEL GRAFO -->
+    <section class="tarjeta seccion-grafo">
+
+      <div class="titulo-seccion">
+        <div>
+          <h2>Visualización del grafo</h2>
+          <p class="descripcion">
+            Las líneas representan las relaciones entre personas y ciudades.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="boton boton-secundario"
+          (click)="imprimirGrafo()"
+        >
+          Ver datos en consola
+        </button>
+      </div>
+
+      <div class="leyenda">
+        <span>
+          <i class="punto punto-persona"></i>
+          Personas
+        </span>
+
+        <span>
+          <i class="punto punto-ciudad"></i>
+          Ciudades
+        </span>
+      </div>
+
+      <app-grafo
+        [nodos]="nodos"
+        [aristas]="aristas"
+      ></app-grafo>
+
+      <div class="estadisticas">
+
+        <div class="estadistica">
+          <span>Nodos</span>
+          <strong>{{ nodos.length }}</strong>
+        </div>
+
+        <div class="estadistica">
+          <span>Conexiones</span>
+          <strong>{{ aristas.length }}</strong>
+        </div>
+
+        <div class="estadistica">
+          <span>Personas</span>
+          <strong>{{ personas.length }}</strong>
+        </div>
+
+        <div class="estadistica">
+          <span>Ciudades</span>
+          <strong>{{ ciudades.length }}</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CONSULTAR HABITANTES -->
+    <section class="tarjeta">
+
+      <h2>🔎 Consultar personas por ciudad</h2>
+
+      <p class="descripcion">
+        Selecciona una ciudad para consultar quiénes viven allí.
+      </p>
+
+      <div class="consulta">
+
+        <select
+          id="ciudadConsulta"
+          name="ciudadConsulta"
+          [(ngModel)]="ciudadConsulta"
+          (ngModelChange)="consultarHabitantes()"
+        >
+          <option value="">
+            Selecciona una ciudad
+          </option>
+
+          <option
+            *ngFor="let ciudad of ciudades"
+            [value]="ciudad.id"
+          >
+            {{ ciudad.nombre }}
+          </option>
+
+        </select>
+
+        <span class="contador">
+          {{ habitantes.length }} habitantes
+        </span>
+
+      </div>
+
+      <div
+        class="sin-datos"
+        *ngIf="ciudadConsulta && habitantes.length === 0"
+      >
+        No hay personas registradas en esta ciudad.
+      </div>
+
+      <div
+        class="tabla-contenedor"
+        *ngIf="habitantes.length > 0"
+      >
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Ciudad</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let persona of habitantes">
+
+              <td>{{ persona.nombre }}</td>
+
+              <td>{{ persona.edad }} años</td>
+
+              <td>
+                {{
+                  ciudades.find(c => c.id === persona.ciudadId)?.nombre
+                }}
+              </td>
+
+              <td>
+                <button
+                  type="button"
+                  class="boton-tabla"
+                  (click)="verConexiones(persona.id)"
+                >
+                  Conexiones
+                </button>
+
+                <button
+                  type="button"
+                  class="boton-eliminar"
+                  (click)="eliminarNodo(persona.id)"
+                >
+                  Eliminar
+                </button>
+              </td>
+
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- LISTA DE NODOS -->
+    <section class="tarjeta">
+
+      <h2>📋 Elementos del grafo</h2>
+
+      <p class="descripcion">
+        Consulta las personas y ciudades registradas.
+      </p>
+
+      <div *ngIf="nodos.length === 0" class="sin-datos">
+        Todavía no hay elementos en el grafo.
+      </div>
+
+      <div class="lista-nodos" *ngIf="nodos.length > 0">
+
+        <div class="fila-nodo" *ngFor="let nodo of nodos">
+
+          <div class="informacion-nodo">
+
+            <span
+              class="etiqueta"
+              [class.etiqueta-persona]="nodo.tipo === 'persona'"
+              [class.etiqueta-ciudad]="nodo.tipo === 'ciudad'"
+            >
+              {{ nodo.tipo === 'persona' ? 'Persona' : 'Ciudad' }}
+            </span>
+
+            <div>
+              <strong>{{ nodo.nombre }}</strong>
+
+              <small *ngIf="nodo.tipo === 'persona'">
+                Edad: {{ nodo.edad }} años
+              </small>
+            </div>
+
+          </div>
+
+          <div class="acciones-nodo">
+
+            <button
+              type="button"
+              class="boton-tabla"
+              (click)="buscarNodo(nodo.id)"
+            >
+              Buscar
+            </button>
+
+            <button
+              type="button"
+              class="boton-tabla"
+              (click)="verConexiones(nodo.id)"
+            >
+              Ver conexiones
+            </button>
+
+            <button
+              type="button"
+              class="boton-eliminar"
+              (click)="eliminarNodo(nodo.id)"
+            >
+              Eliminar
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    Challenge 11 · Grafos · Angular + D3
+  </footer>
+
+</div>

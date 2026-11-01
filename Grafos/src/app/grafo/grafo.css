@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.grafo-container {
+  width: 100%;
+  min-height: 320px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.grafo-container svg {
+  display: block;
+  max-width: 100%;
+}
