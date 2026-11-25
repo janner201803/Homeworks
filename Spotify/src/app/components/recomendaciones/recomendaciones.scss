@@ -1,0 +1,58 @@
+@use '../../../estilos/variables' as v;
+@use '../../../estilos/mixins' as m;
+
+.panel {
+  @include m.panel;
+}
+
+select {
+  @include m.campo;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+button {
+  @include m.boton;
+  width: 100%;
+}
+
+.recomendacion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: v.$fondo-secundario;
+  margin-bottom: 10px;
+  border-radius: 8px;
+
+  &:hover {
+    background: v.$borde;
+  }
+}
+
+.portada {
+  background: v.$borde;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.informacion {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  span {
+    font-size: 13px;
+    color: v.$texto-secundario;
+  }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid v.$borde;
+  margin: 20px 0;
+}
+
+.mensaje {
+  color: v.$verde;
+}

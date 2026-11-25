@@ -1,0 +1,46 @@
+<section class="panel">
+  <span class="etiqueta">MAX HEAP</span>
+  <h2>Ranking de popularidad</h2>
+  <p>Las canciones más escuchadas.</p>
+  <div class="filtro">
+
+    <label>Mostrar:</label>
+
+    <select [(ngModel)]="cantidad">
+
+      <option [ngValue]="3">Top 3</option>
+      <option [ngValue]="5">Top 5</option>
+      <option [ngValue]="10">Top 10</option>
+
+    </select>
+
+  </div>
+
+  @for (cancion of ranking; track cancion.id;
+        let i = $index) {
+
+    <div class="cancion">
+
+      <div class="posicion">
+        {{ i + 1 }}
+      </div>
+
+      <div class="portada">🎵</div>
+
+      <div class="informacion">
+
+        <strong>{{ cancion.titulo }}</strong>
+
+        <span>{{ cancion.artista }}</span>
+
+      </div>
+
+      <div class="reproducciones">
+
+        {{ cancion.reproducciones }}
+
+        <small>reproducciones</small>
+      </div>
+    </div>
+  }
+</section>

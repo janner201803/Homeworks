@@ -1,0 +1,78 @@
+<section class="panel">
+  <span class="etiqueta">TRIE</span>
+  <h2>Buscar canciones</h2>
+  <p>Encuentra tus canciones favoritas.</p>
+  <div class="busqueda">
+
+    <input
+      type="text"
+      placeholder="Escribe una canción..."
+      [(ngModel)]="texto"
+      (ngModelChange)="buscarSugerencias()"
+      (keyup.enter)="buscarExacta()"
+    >
+
+    <button (click)="buscarExacta()">
+      Buscar
+    </button>
+  </div>
+
+  @if (sugerencias.length > 0) {
+    <div class="sugerencias">
+      @for (cancion of sugerencias; track cancion) {
+
+        <div
+          class="sugerencia"
+          (click)="seleccionar(cancion)"
+        >
+          🎵 {{ cancion }}
+        </div>
+      }
+
+    </div>
+
+  }
+
+  @if (resultado) {
+    <p class="mensaje">{{ resultado }}</p>
+  }
+  <hr>
+  <h3>Agregar nueva canción</h3>
+  <form (ngSubmit)="agregarCancion()">
+
+    <input
+      type="text"
+      placeholder="Título de la canción"
+      name="titulo"
+      [(ngModel)]="titulo"
+      required
+    >
+
+    <input
+      type="text"
+      placeholder="Artista"
+      name="artista"
+      [(ngModel)]="artista"
+      required
+    >
+
+    <label>Número de reproducciones</label>
+
+    <input
+      type="number"
+      name="reproducciones"
+      [(ngModel)]="reproducciones"
+      min="0"
+      required
+    >
+
+    <button type="submit">
+      Agregar canción
+    </button>
+
+  </form>
+
+  @if (mensaje) {
+    <p class="mensaje">{{ mensaje }}</p>
+  }
+</section>

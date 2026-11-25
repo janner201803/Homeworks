@@ -1,0 +1,39 @@
+@use './estilos/variables' as v;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: v.$fondo;
+  color: v.$texto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+p {
+  color: v.$texto-secundario;
+  line-height: 1.5;
+}
+
+.etiqueta {
+  color: v.$verde;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+input,
+button,
+select {
+  font-family: inherit;
+}

@@ -1,0 +1,85 @@
+<section class="panel">
+  <span class="etiqueta">GRAFO NO DIRIGIDO</span>
+  <h2>Recomendaciones</h2>
+  <p>Descubre canciones relacionadas.</p>
+
+  <select
+    [(ngModel)]="seleccionada"
+    (ngModelChange)="mensaje = ''"
+  >
+
+    <option [ngValue]="0">
+      Selecciona una canción
+    </option>
+
+    @for (cancion of canciones; track cancion.id) {
+
+      <option [ngValue]="cancion.id">
+        {{ cancion.titulo }}
+      </option>
+
+    }
+
+  </select>
+
+  @if (seleccionada !== 0) {
+
+    <h3>Canciones relacionadas</h3>
+
+    @for (cancion of recomendaciones;
+          track cancion.id) {
+
+      <div class="recomendacion">
+
+        <div class="portada">🎵</div>
+
+        <div class="informacion">
+
+          <strong>{{ cancion.titulo }}</strong>
+
+          <span>{{ cancion.artista }}</span>
+
+        </div>
+
+      </div>
+
+    } @empty {
+
+      <p>No hay canciones relacionadas.</p>
+
+    }
+
+    <hr>
+
+    <h3>Agregar relación</h3>
+
+    <select [(ngModel)]="destino">
+
+      <option [ngValue]="0">
+        Selecciona otra canción
+      </option>
+
+      @for (cancion of canciones; track cancion.id) {
+
+        @if (cancion.id !== seleccionada) {
+
+          <option [ngValue]="cancion.id">
+            {{ cancion.titulo }}
+          </option>
+
+        }
+
+      }
+
+    </select>
+
+    <button (click)="relacionar()">
+      Relacionar canciones
+    </button>
+
+    @if (mensaje) {
+
+      <p class="mensaje">{{ mensaje }}</p>
+    }
+  }
+</section>

@@ -1,0 +1,68 @@
+@use '../../../estilos/variables' as v;
+@use '../../../estilos/mixins' as m;
+
+.panel {
+  @include m.panel;
+}
+
+.filtro {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+select {
+  @include m.campo;
+}
+
+.cancion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid v.$borde;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: v.$fondo-secundario;
+  }
+}
+
+.posicion {
+  font-size: 20px;
+  font-weight: bold;
+  color: v.$verde;
+}
+
+.portada {
+  background: v.$fondo-secundario;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.informacion {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  span {
+    color: v.$texto-secundario;
+    font-size: 13px;
+  }
+}
+
+.reproducciones {
+  color: v.$verde;
+  text-align: right;
+
+  small {
+    display: block;
+    color: v.$texto-secundario;
+    font-size: 10px;
+  }
+}

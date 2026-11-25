@@ -1,0 +1,37 @@
+@use 'variables' as v;
+
+@mixin panel {
+  background: v.$fondo-panel;
+  padding: v.$espaciado;
+  border-radius: v.$radio;
+  border: 1px solid v.$borde;
+}
+
+@mixin boton {
+  background: v.$verde;
+  color: #000;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: v.$verde-hover;
+  }
+}
+
+@mixin campo {
+  background: v.$fondo-secundario;
+  color: v.$texto;
+  border: 1px solid v.$borde;
+  padding: 12px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+
+  &:focus {
+    border-color: v.$verde;
+  }
+}

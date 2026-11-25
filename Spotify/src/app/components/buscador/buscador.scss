@@ -1,0 +1,56 @@
+@use '../../../estilos/variables' as v;
+@use '../../../estilos/mixins' as m;
+
+.panel {
+  @include m.panel;
+}
+
+.busqueda {
+  display: flex;
+  gap: 10px;
+
+  input {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+input {
+  @include m.campo;
+}
+
+button {
+  @include m.boton;
+}
+
+.sugerencias {
+  background: v.$fondo-secundario;
+  border-radius: 8px;
+  margin-top: 10px;
+
+  .sugerencia {
+    padding: 12px;
+    cursor: pointer;
+
+    &:hover {
+      background: v.$borde;
+      color: v.$verde;
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid v.$borde;
+  margin: 25px 0;
+}
+
+.mensaje {
+  color: v.$verde;
+}
